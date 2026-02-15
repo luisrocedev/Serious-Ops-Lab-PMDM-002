@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serious Ops Lab · PMDM</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <section id="mapZone">
+      <div id="map"></div>
+      <canvas id="gaCanvas"></canvas>
+      <video id="webcam" autoplay playsinline muted></video>
+      <canvas id="handDebug"></canvas>
+    </section>
+
+    <aside id="panel">
+      <h1>Serious Ops Lab</h1>
+      <p class="muted">Base clase: mapa con manos + pinch + algoritmo genético</p>
+
+      <div class="formRow">
+        <label>Operador</label>
+        <input id="operatorAlias" maxlength="40" placeholder="Tu alias" />
+        <button id="startBtn">Iniciar simulación</button>
+      </div>
+
+      <div class="kpis">
+        <article><span>Score</span><strong id="kpiScore">0</strong></article>
+        <article><span>Entregas</span><strong id="kpiDeliveries">0</strong></article>
+        <article><span>Incidencias</span><strong id="kpiIncidents">0</strong></article>
+        <article><span>Riesgo medio</span><strong id="kpiRisk">0</strong></article>
+      </div>
+
+      <section>
+        <h2>Gestos</h2>
+        <ul>
+          <li>1 mano cerrada: mover mapa</li>
+          <li>2 manos cerradas: zoom pinch</li>
+          <li>Abiertas: modo observación</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Top sesiones</h2>
+        <div class="tableWrap"><table><thead><tr><th>Operador</th><th>Score</th><th>Entregas</th><th>Riesgo</th></tr></thead><tbody id="leaderboardBody"></tbody></table></div>
+      </section>
+
+      <section>
+        <h2>Historial</h2>
+        <div class="tableWrap small"><table><thead><tr><th>Resultado</th><th>Score</th><th>Inc.</th></tr></thead><tbody id="historyBody"></tbody></table></div>
+      </section>
+
+      <button id="endBtn" class="danger">Cerrar simulación</button>
+    </aside>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
